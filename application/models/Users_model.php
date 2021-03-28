@@ -99,12 +99,12 @@ class Users_model extends CI_Model
         return $this->db->get_where('users', array('user_id' => $id))->row_array();
     }
 
-    // function update_stat_active($id_product, $status)
-    // {
-    //     return $this->db->update('products', $status, 'product_id =' . $id_product);
-    // }
-    // function update_stat_deactive($id_product, $status)
-    // {
-    //     return $this->db->update('products', $status, 'product_id =' . $id_product);
-    // }
+    function update_stat_active($id_user, $status)
+    {
+        return $this->db->update('users', $status, 'user_id =' . $id_user);
+    }
+    function update_stat_deactive($id_user, $status)
+    {
+        return $this->db->update('users', $status, 'user_id =' . $id_user);
+    }
 }

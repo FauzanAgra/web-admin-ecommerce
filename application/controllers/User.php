@@ -6,6 +6,7 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Users_model');
+        $this->load->model('Roles_model');
     }
 
     public function index()
@@ -168,25 +169,23 @@ class User extends CI_Controller
                         }
                     }
                 }
-            }
-            // else if ($action == 'deactive') {
-            //     $id_product = $this->input->post('id-product');
-            //     $status = array('product_stat' => 0);
-            //     $stat = $this->Products_model->update_stat_deactive($id_product, $status);
-            //     if ($stat) {
-            //         $ret->stat = 1;
-            //         $ret->mesg = 'Data Berhasil di Update';
-            //     }
-            // } else if ($action == 'active') {
-            //     $id_product = $this->input->post('id-product');
-            //     $status = array('product_stat' => 1);
-            //     $stat = $this->Products_model->update_stat_active($id_product, $status);
-            //     if ($stat) {
-            //         $ret->stat = 1;
-            //         $ret->mesg = 'Data Berhasil di Update';
-            //     }
-            // } 
-            else if ($action == 'edit') {
+            } else if ($action == 'deactive') {
+                $id_user = $this->input->post('id-user');
+                $status = array('user_stat' => 0);
+                $stat = $this->Users_model->update_stat_deactive($id_user, $status);
+                if ($stat) {
+                    $ret->stat = 1;
+                    $ret->mesg = 'Data Status Berhasil di Update';
+                }
+            } else if ($action == 'active') {
+                $id_user = $this->input->post('id-user');
+                $status = array('user_stat' => 1);
+                $stat = $this->Users_model->update_stat_active($id_user, $status);
+                if ($stat) {
+                    $ret->stat = 1;
+                    $ret->mesg = 'Data Status Berhasil di Update';
+                }
+            } else if ($action == 'edit') {
                 $id_user = $this->input->post('id-user');
                 $data = $this->Users_model->get_where_user($id_user);
                 if ($data) {
@@ -219,6 +218,101 @@ class User extends CI_Controller
             $data['title'] = 'User';
             $data['content'] = 'admin/user/user.php';
             $data['script'] = 'admin/user/script-user.php';
+            $this->load->view('layout/index.php', $data);
+        }
+    }
+
+    function role()
+    {
+        if ($this->input->post() && $this->input->post('action')) {
+            $ret = new \stdClass();
+            $ret->stat = 0;
+            $ret->mesg = '';
+
+            $action = $this->input->post('action');
+            if ($action == 'load') {
+                $columns = array(
+                    '0' => 'role_id'
+                );
+                $limit = $this->input->post('length');
+                $start = $this->input->post('start');
+                $order = $columns[$this->input->post('order')[0]['column']];
+                $dir = $this->input->post('order')[0]['dir'];
+
+                $search = [];
+                if ($this->input->post('search')['value']) {
+                    $s = $this->input->post('search')['value'];
+                    foreach ($columns as $k => $v) {
+                        $search[$v] = $s;
+                    }
+                }
+
+                $params = array();
+                $datas = $this->Roles_model->get_all_roles($params, $search, $limit, $start, $order, $dir);
+                $ret->data = $datas;
+                $totaldata = $this->Roles_model->get_count_roles($params, $search);
+                $ret->recordsTotal = $totaldata;
+                $ret->recordsFiltered = $totaldata;
+                $ret->stat = 1;
+            } else if ($action == 'deactive') {
+                $id_role = $this->input->post('id-role');
+                $status = array('role_stat' => 0);
+                $stat = $this->Roles_model->update_stat_deactive($id_role, $status);
+                if ($stat) {
+                    $ret->stat = 1;
+                    $ret->mesg = 'Data Berhasil di Update';
+                }
+            } else if ($action == 'active') {
+                $id_role = $this->input->post('id-role');
+                $status = array('role_stat' => 1);
+                $stat = $this->Roles_model->update_stat_active($id_role, $status);
+                if ($stat) {
+                    $ret->stat = 1;
+                    $ret->mesg = 'Data Berhasil di Update';
+                }
+            } else if ($action == 'delete') {
+                $id_role = $this->input->post('id-role');
+                $stat = $this->Roles_model->delete_role($id_role);
+                if ($stat) {
+                    $ret->stat = 1;
+                    $ret->mesg = 'Data Role berhasil di Hapus';
+                }
+            } else if ($action == 'edit') {
+                $id_role = $this->input->post('id-role');
+                $data = $this->Roles_model->get_where_role($id_role);
+                if ($data) {
+                    $ret->stat = 1;
+                    $ret->data = $data;
+                }
+            } else if ($action == 'insert') {
+                $data =  $this->input->post();
+                $params = array(
+                    'role_name' => $data['name-role'],
+                    'role_stat' => $data['stat-role']
+                );
+
+                $id_role = $data['id-role'];
+                if ($id_role == '') {
+                    $stat = $this->Roles_model->insert_role($params);
+                    if ($stat) {
+                        $ret->stat = 1;
+                        $ret->mesg = 'Data Kategori Berhasil di Input';
+                    }
+                } else {
+                    $stat = $this->Roles_model->update_role($id_role, $params);
+                    if ($stat) {
+                        $ret->stat = 1;
+                        $ret->mesg = 'Data Kategori Berhasil di Update';
+                    }
+                }
+            }
+
+            echo json_encode($ret);
+        } else {
+            $data['profile'] = $this->session->userdata('userdata');
+            $data['title'] = 'Role';
+            $data['content'] = 'admin/user/role.php';
+            $data['script'] = 'admin/user/script-role.php';
             $this->load->view('layout/index.php', $data);
         }
     }

@@ -25,28 +25,39 @@ class Login extends CI_Controller
                 if ($user) {
                     //Cek Password
                     if (password_verify($password, $user['user_password'])) {
-                        //Cek Role
-                        if ($user['user_role'] == 1) {
-                            $ret->data = 'dashboard';
+                        if ($user['user_stat'] == 1) {
+                            //Cek Role
+                            if ($user['user_role'] == 1) {
+                                $ret->data = 'dashboard';
+                            } else {
+                                $ret->data = 'dashboard';
+                            }
+
+                            //Set Session
+                            $user['last_time'] = time();
+                            $this->session->set_userdata('userdata', $user);
+                            $this->session->set_userdata('loggedin', true);
+
+                            //Pesan Ke User
+                            $ret->stat = 1;
+                            $ret->mesg = '
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Login Success!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            ';
                         } else {
-                            $ret->data = 'dashboard';
+                            $ret->mesg = '
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Please contact Customer Service !
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            ';
                         }
-
-                        //Set Session
-                        $user['last_time'] = time();
-                        $this->session->set_userdata('userdata', $user);
-                        $this->session->set_userdata('loggedin', true);
-
-                        //Pesan Ke User
-                        $ret->stat = 1;
-                        $ret->mesg = '
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                Login Success!
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        ';
                     } else {
                         $ret->mesg = '
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -112,7 +123,8 @@ class Login extends CI_Controller
                     'user_address' => htmlspecialchars($data['address-user']),
                     'user_datetime' => date('Y-m-d H:i:s'),
                     'user_role' => 2,
-                    'user_image' => 'default.png'
+                    'user_image' => 'default.png',
+                    'user_stat' => 1
                 );
 
                 $stat = $this->Users_model->insert_user($params);

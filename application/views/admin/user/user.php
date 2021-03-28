@@ -22,6 +22,7 @@
                                     <th>No Telp</th>
                                     <th>Alamat</th>
                                     <th>Role</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
