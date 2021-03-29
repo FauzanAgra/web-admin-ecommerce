@@ -53,6 +53,20 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#trans" role="button" aria-expanded="true">
+                    <i class="link-icon" data-feather="shopping-bag"></i>
+                    <span class="link-title">Transaction</span>
+                    <i class="link-arrow" data-feather="chevron-up"></i>
+                </a>
+                <div class="collapse show" id="trans">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="<?= base_url('transaction') ?>" class="nav-link">Data</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
