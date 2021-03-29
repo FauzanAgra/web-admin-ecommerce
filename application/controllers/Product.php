@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Product extends CI_Controller
+class Product extends MY_Controller
 {
     function __construct()
     {
@@ -208,7 +208,7 @@ class Product extends CI_Controller
             $data['title'] = 'Produk';
             $data['content'] = 'admin/product/product.php';
             $data['script'] = 'admin/product/script-product.php';
-            $this->load->view('layout/index.php', $data);
+            $this->load->view('layout/admin/index.php', $data);
         }
     }
 
@@ -302,7 +302,7 @@ class Product extends CI_Controller
             $data['title'] = 'Kategori';
             $data['content'] = 'admin/product/category.php';
             $data['script'] = 'admin/product/script-category.php';
-            $this->load->view('layout/index.php', $data);
+            $this->load->view('layout/admin/index.php', $data);
         }
     }
 }

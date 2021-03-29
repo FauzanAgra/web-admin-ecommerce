@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class User extends CI_Controller
+class User extends MY_Controller
 {
     function __construct()
     {
@@ -218,7 +218,7 @@ class User extends CI_Controller
             $data['title'] = 'User';
             $data['content'] = 'admin/user/user.php';
             $data['script'] = 'admin/user/script-user.php';
-            $this->load->view('layout/index.php', $data);
+            $this->load->view('layout/admin/index.php', $data);
         }
     }
 
@@ -313,7 +313,7 @@ class User extends CI_Controller
             $data['title'] = 'Role';
             $data['content'] = 'admin/user/role.php';
             $data['script'] = 'admin/user/script-role.php';
-            $this->load->view('layout/index.php', $data);
+            $this->load->view('layout/admin/index.php', $data);
         }
     }
 }

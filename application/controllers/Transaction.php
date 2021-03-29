@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class Transaction extends CI_Controller
+class Transaction extends MY_Controller
 {
     function __construct()
     {
@@ -58,7 +58,7 @@ class Transaction extends CI_Controller
             $data['title'] = 'Transaksi';
             $data['content'] = 'admin/transaction/transaction.php';
             $data['script'] = 'admin/transaction/script-trans.php';
-            $this->load->view('layout/index.php', $data);
+            $this->load->view('layout/admin/index.php', $data);
         }
     }
 

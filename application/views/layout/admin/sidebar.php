@@ -23,7 +23,7 @@
                 <a class="nav-link" data-toggle="collapse" href="#product" role="button" aria-expanded="true">
                     <i class="link-icon" data-feather="package"></i>
                     <span class="link-title">Product</span>
-                    <i class="link-arrow" data-feather="chevron-up"></i>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse show" id="product">
                     <ul class="nav sub-menu">
@@ -40,7 +40,7 @@
                 <a class="nav-link" data-toggle="collapse" href="#user" role="button" aria-expanded="true">
                     <i class="link-icon" data-feather="users"></i>
                     <span class="link-title">User</span>
-                    <i class="link-arrow" data-feather="chevron-up"></i>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse show" id="user">
                     <ul class="nav sub-menu">
@@ -57,7 +57,7 @@
                 <a class="nav-link" data-toggle="collapse" href="#trans" role="button" aria-expanded="true">
                     <i class="link-icon" data-feather="shopping-bag"></i>
                     <span class="link-title">Transaction</span>
-                    <i class="link-arrow" data-feather="chevron-up"></i>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse show" id="trans">
                     <ul class="nav sub-menu">

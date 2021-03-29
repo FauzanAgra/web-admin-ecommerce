@@ -68,9 +68,9 @@
                         if (parseInt(row.trans_stat) === 1) {
                             disp += '<button type="button" class="btn btn-primary btn-icon text-white confirm mr-1" data-id=' + data + ' title="confirm"><i class="fas fa-file"></i></button>';
                         } else if (parseInt(row.trans_stat) === 2) {
-                            disp += '<button type="button" class="btn btn-warning btn-icon text-white delivery mr-1" data-id=' + data + ' title="packed"><i class="fas fa-dolly"></i></button>';
+                            disp += '<button type="button" class="btn btn-primary btn-icon text-white delivery mr-1" data-id=' + data + ' title="packed"><i class="fas fa-dolly"></i></button>';
                         } else if (parseInt(row.trans_stat) === 3) {
-                            disp += '<button type="button" class="btn btn-info btn-icon cek-resi text-white  mr-1" data-id=' + data + ' title="deliver"><i class="fas fa-truck"></i></button>';
+                            disp += '<button type="button" class="btn btn-primary btn-icon cek-resi text-white  mr-1" data-id=' + data + ' title="deliver"><i class="fas fa-truck"></i></button>';
                         }
                         disp += '<button type="button" class="btn btn-danger btn-icon btnDetail mr-1" data-id=' + data + '><i class="fas fa-search-plus"></i></button>';
                         return disp;
@@ -84,6 +84,7 @@
 
             $('#ModalTrans').modal('show');
             $('#form-trans').trigger('reset');
+            $('#list-produk').html('');
 
             var data = {
                 'id-trans': $(this).data('id'),
