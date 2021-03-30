@@ -30,7 +30,7 @@ class Login extends CI_Controller
                             if ($user['user_role'] == 1) {
                                 $ret->data = 'dashboard';
                             } else {
-                                $ret->data = 'dashboard';
+                                $ret->data = 'ecommerce';
                             }
 
                             //Set Session
