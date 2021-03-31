@@ -2,7 +2,7 @@
     $(document).ready(function() {
         $('#btnLogin').on('click', function(e) {
             e.preventDefault();
-            var url = '<?= base_url() ?>';
+            var url = '<?= base_url('login') ?>';
 
             var data = {
                 'username': $('#user-login').val(),

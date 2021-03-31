@@ -32,7 +32,7 @@
                             <div class="row">
                                 <div class="col-md-12 pl-md-0">
                                     <div class="auth-form-wrapper px-4 py-5">
-                                        <a href="#" class="noble-ui-logo d-block mb-2 text-center">DM<span>Tekno</span></a>
+                                        <a href="<?= base_url(); ?>" class="noble-ui-logo d-block mb-2 text-center">DM<span>Tekno</span></a>
                                         <h5 class="text-muted font-weight-normal mb-4 text-center">Create a free account.</h5>
                                         <form class="form-registrasi">
                                             <div class="form-group">
@@ -58,7 +58,7 @@
                                             <div class="mt-3">
                                                 <button type="button" class="btn btn-primary text-white mr-2 mb-2 mb-md-0 btnRegis">Sing up</button>
                                             </div>
-                                            <a href="<?= base_url() ?>" class="d-block mt-3 text-muted">Already a user? Sign in</a>
+                                            <a href="<?= base_url('login') ?>" class="d-block mt-3 text-muted">Already a user? Sign in</a>
                                         </form>
                                     </div>
                                 </div>

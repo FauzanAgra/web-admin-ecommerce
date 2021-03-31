@@ -30,7 +30,7 @@
               <div class="row">
                 <div class="col-md-12 pl-md-0">
                   <div class="auth-form-wrapper px-4 py-5">
-                    <a href="#" class="noble-ui-logo d-block mb-2 text-center">DM<span>Tekno</span></a>
+                    <a href="<?= base_url(); ?>" class="noble-ui-logo d-block mb-2 text-center">DM<span>Tekno</span></a>
                     <h5 class="text-muted font-weight-normal mb-4 text-center">
                       Welcome back! Log in to your account.
                     </h5>
