@@ -36,8 +36,10 @@
                     <div class="col-md-2 mt-3">
                         <h4 class="font-weight-bold">IKUTI KAMI</h4>
                         <div class="row">
-                            <p class="text-white"> <i class="fab fa-facebook-square ml-2 mr-2 fa-lg mt-2 " title="facebook"></i> Facebook</p>
-
+                            <p class="text-white">
+                                <i class="fab fa-facebook-square ml-2 mr-2 fa-lg mt-2 " title="facebook"></i>
+                                Facebook
+                            </p>
                             <p class="text-white"><i class="fab fa-instagram ml-2 mr-2 fa-lg mt-2" title="instagram"></i> Instagram</p>
 
                             <p class="text-white"><i class="fab fa-twitter-square ml-2 mr-2 fa-lg mt-2" title="twitter"></i> Twitter</p>

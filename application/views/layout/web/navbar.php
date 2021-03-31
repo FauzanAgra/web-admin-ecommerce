@@ -18,7 +18,7 @@
                             <a href="<?= base_url('checkout'); ?>" class="nav-link text-white">CHECKOUT</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white" id="profile" data-id="<?= $profile['user_id'] ?>"><?= strtoupper($profile['user_full_name']) ?></a>
+                            <a href="<?= base_url('dashboard_user'); ?>" class="nav-link text-white" id="profile" data-id="<?= $profile['user_id'] ?>"><?= strtoupper($profile['user_full_name']) ?></a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url('login/logout'); ?>" class="nav-link text-white" id="logout">LOGOUT</a>
