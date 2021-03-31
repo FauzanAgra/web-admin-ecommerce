@@ -30,7 +30,7 @@
                 'targets': []
             }],
             "order": [
-                [0, 'asc']
+                [0, 'desc']
             ],
             "columns": [{
                     'data': 'trans_number'

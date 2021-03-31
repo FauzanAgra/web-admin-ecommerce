@@ -11,7 +11,7 @@ class Trans_model extends CI_Model
         if ($order) {
             $this->db->order_by($order, $dir);
         } else {
-            $this->db->order_by('trans_number', "asc");
+            $this->db->order_by('trans_number', "desc");
         }
 
         if ($limit) {

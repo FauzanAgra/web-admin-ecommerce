@@ -18,13 +18,12 @@ class Transaction extends MY_Controller
             $action = $this->input->post('action');
             if ($action == 'load') {
                 $columns = array(
-                    '0' => 'trans_id'
+                    '0' => 'trans_number'
                 );
                 $limit = $this->input->post('length');
                 $start = $this->input->post('start');
                 $order = $columns[$this->input->post('order')[0]['column']];
                 $dir = $this->input->post('order')[0]['dir'];
-
                 $search = [];
                 if ($this->input->post('search')['value']) {
                     $s = $this->input->post('search')['value'];
