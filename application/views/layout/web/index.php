@@ -35,7 +35,7 @@
 
 
     <script src="<?= base_url(); ?>assets/bootstrap/js/jquery-3.6.0.min.js"></script>
-    <script src="<?= base_url(); ?>assets/bootstrap/js/popper.min.js"></script>
+    <!-- <script src="<?= base_url(); ?>assets/bootstrap/js/popper.min.js"></script> -->
     <script src="<?= base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?= base_url(); ?>/assets/vendors/sweetalert2/sweetalert2.min.js"></script>
     <script src="https://kit.fontawesome.com/1a0e92cbbe.js" crossorigin="anonymous"></script>

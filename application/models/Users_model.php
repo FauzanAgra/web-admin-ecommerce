@@ -93,6 +93,12 @@ class Users_model extends CI_Model
         return $this->db->get('users')->row_array();
     }
 
+    function change_password($user_id, $password)
+    {
+        $this->db->where('user_id', $user_id);
+        return $this->db->update('users', array('user_password' => $password));
+    }
+
     function get_where_user($id)
     {
         $this->set_join();
