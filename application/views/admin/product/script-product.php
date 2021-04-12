@@ -15,7 +15,7 @@
                     d.action = 'load';
                 },
                 dataSrc: function(data) {
-                    return data.data;
+                    return data.result;
                 }
             },
             "columnDefs": [{

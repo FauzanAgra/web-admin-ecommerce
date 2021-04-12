@@ -37,7 +37,7 @@ class Product extends MY_Controller
 
                 $params = array();
                 $datas = $this->Products_model->get_all_products($params, $search, $limit, $start, $order, $dir);
-                $ret->data = $datas;
+                $ret->result = $datas;
                 $totaldata = $this->Products_model->get_count_products($params, $search);
                 $ret->recordsTotal = $totaldata;
                 $ret->recordsFiltered = $totaldata;
