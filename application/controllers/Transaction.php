@@ -42,7 +42,7 @@ class Transaction extends MY_Controller
             } else if ($action == 'detail') {
                 $id_trans = $this->input->post('id-trans');
                 $data = $this->Trans_model->get_where_trans($id_trans);
-                $data['trans_detail'] = $this->Trans_model->get_where_detail($id_trans);
+                $data['trans_detail'] = $this->Trans_model->get_where_detail($id_trans)->result_array();
                 $show = $this->show_trans($data);
                 if ($show) {
                     $ret->stat = 1;

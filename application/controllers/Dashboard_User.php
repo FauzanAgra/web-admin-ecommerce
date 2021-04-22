@@ -112,8 +112,17 @@ class Dashboard_User extends MY_Controller
                 }
             } else if ($action == 'load-trans') {
                 $id_user = $this->input->post('id-user');
-                $data =  $this->Trans_model->get_trans_user($id_user);
-                $show_data = $this->show_trans_user($data);
+                $datas =  $this->Trans_model->get_trans_user($id_user);
+                for ($x = 0; $x < count($datas); $x++) {
+                    $datas[$x]['trans_count'] = $this->db->get_where('trans_details', array('detail_trans' => $datas[$x]['trans_id']))->num_rows();
+                    $datas[$x]['trans_detail'] = $this->Trans_model->get_where_detail($datas[$x]['trans_id'])->row_array();
+                }
+                $show_data = $this->show_trans_user($datas);
+                if ($show_data) {
+                    $ret->stat = 1;
+                    $ret->mesg = 'Data Berhasil di Load';
+                    $ret->data = $show_data;
+                }
             }
 
             echo json_encode($ret);
@@ -126,14 +135,93 @@ class Dashboard_User extends MY_Controller
         }
     }
 
-    function show_trans_user($data)
+    function show_trans_user($datas)
     {
-        // $output = '';
+        $output = '';
 
-        // foreach ($data as $d) {
-        //     $output = '
+        if ($datas) {
+            foreach ($datas as $data) {
+                $output .= '
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <div class="card shadow-sm p-3" style="border-radius: 1rem;">
+                                    <div class="row mb-4">
+                                        <div class="col-12 d-flex flex-row">
+                                            <small class="font-weight-bold border-right pr-3">
+                                                #' . $data['trans_number'] . '
+                                            </small>
+                                            <span class="badge badge-success ml-3">Success</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-12">
+                ';
 
-        //     ';
-        // }
+                if ($data['trans_count'] > 1) {
+                    $count = $data['trans_count'] - 1;
+                    $output .= '
+                        <div class="row">
+                            <div class="col-lg-9 col-sm-8 col-md-8 border-right m-0">
+                                <div class="media">
+                                    <img src="' . base_url('assets/img/products/') . $data['trans_detail']['product_image'] . '" class="mr-3 img-thumbnail" style="max-width: 80px;">
+                                    <div class="media-body ">
+                                        <h6 class="m-0 d-inline-block font-weight-bold text-truncate" style="max-width: 200px;">' . $data['trans_detail']['product_name'] . '</h6>
+                                        <br>
+                                        <small>' . $data['trans_detail']['detail_qty'] . ' Barang x Rp. ' . number_format($data['trans_detail']['detail_price'], 0, '.', '.') . '</small>
+                                        <br>
+                                        <small>+' . $count . ' produk lainnya</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-4 col-md-4 ">
+                                <p class="mb-0 font-weight-normal">Total Berlanja</p>
+                                <p class="font-weight-bold">Rp. ' . number_format($data['trans_total'], 0, '.', '.') . '</p>
+                            </div>
+                        </div>
+                    ';
+                } else {
+                    $output .= '
+                        <div class="row">
+                            <div class="col-lg-9 col-sm-8 col-md-8 border-right m-0">
+                                <div class="media">
+                                    <img src="' . base_url('assets/img/products/') . $data['trans_detail']['product_image'] . '" class="mr-3 img-thumbnail" style="max-width: 80px;">
+                                    <div class="media-body ">
+                                        <h6 class="m-0 d-inline-block font-weight-bold text-truncate" style="max-width: 200px;">' . $data['trans_detail']['product_name'] . '</h6>
+                                        <br>
+                                        <small>' . $data['trans_detail']['detail_qty'] . ' Barang x Rp. ' . number_format($data['trans_detail']['detail_price'], 0, '.', '.') . '</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-4 col-md-4 ">
+                                <p class="mb-0 font-weight-normal">Total Berlanja</p>
+                                <p class="font-weight-bold">Rp. ' . number_format($data['trans_total'], 0, '.', '.') . '</p>
+                            </div>
+                        </div>
+                    ';
+                }
+
+                $output .= '
+                                </div>
+                            </div>
+                            <div class="row justify-content-end">
+                                <div class="col-2 text-right">
+                                    <button class="btn btn-link text-decoration-none text-black">Detail</button>
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-dark">Beli Lagi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                ';
+            }
+        } else {
+            $output .= '
+                Tranasksi Belom Ada
+            ';
+        }
+
+        return $output;
     }
 }

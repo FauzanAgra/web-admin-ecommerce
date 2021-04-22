@@ -20,12 +20,32 @@
             </li>
             <li class="nav-item nav-category">Web Apps</li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#product" role="button" aria-expanded="true">
+                <a class="nav-link" data-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
+                    <i class="link-icon" data-feather="mail"></i>
+                    <span class="link-title">Email</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="emails">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="pages/email/inbox.html" class="nav-link">Inbox</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/email/read.html" class="nav-link">Read</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/email/compose.html" class="nav-link">Compose</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#products" role="button" aria-expanded="false" aria-controls="product">
                     <i class="link-icon" data-feather="package"></i>
                     <span class="link-title">Product</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse show" id="product">
+                <div class="collapse" id="products">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
                             <a href="<?= base_url('product') ?>" class="nav-link">Data</a>
@@ -37,12 +57,12 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#user" role="button" aria-expanded="true">
+                <a class="nav-link" data-toggle="collapse" href="#user" role="button" aria-expanded="false" aria-controls="user">
                     <i class="link-icon" data-feather="users"></i>
                     <span class="link-title">User</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse show" id="user">
+                <div class="collapse" id="user">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
                             <a href="<?= base_url('user') ?>" class="nav-link">Data</a>
@@ -54,12 +74,12 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#trans" role="button" aria-expanded="true">
+                <a class="nav-link" data-toggle="collapse" href="#trans" role="button" aria-expanded="false" aria-controls="trans">
                     <i class="link-icon" data-feather="shopping-bag"></i>
                     <span class="link-title">Transaction</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse show" id="trans">
+                <div class="collapse" id="trans">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
                             <a href="<?= base_url('transaction') ?>" class="nav-link">Data</a>

@@ -24,7 +24,8 @@
             },
             success: function(data) {
                 if (parseInt(data.stat) === 1) {
-
+                    $('.list-trans').append(' ');
+                    $('.list-trans').append(data.data);
                 }
             },
             error: function(xhr, status, err) {
@@ -123,6 +124,27 @@
                 }
             });
         });
+
+        function loadHtml(data) {
+            var output = '';
+            output += '<div class="row mb-2">\n\
+                                    <div class="col-12">\n\
+                                        <div class="card shadow-sm p-3" style="border-radius: 1rem;">\n\
+                                            <div class="row mb-4">\n\
+                                                <div class="col-12 d-flex flex-row">';
+            $output += '<small class="font-weight-bold border-right pr-3">' + data.trans_number + '</small>';
+            if (parseInt(data.trans_stat) == 1) {
+                $output += '<span class="badge badge-primary ml-3">Pembayaran</span>';
+            } else if (parseInt(data.trans_stat) == 2) {
+                $output += '<span class="badge badge-warning ml-3">Pengemasan</span>';
+            } else if (parseInt(data.trans_stat) == 3) {
+                $output += '<span class="badge badge-info ml-3">Pengiriman</span>';
+            } else if (parseInt(data.trans_stat) == 4) {
+                $output += '<span class="badge badge-success ml-3">Diterima</span>';
+            }
+            $output += '</div></div><div class="row mb-2"><div class="col-12"><div class="row"><div class="col-lg-9 col-sm-8 col-md-8 border-right m-0"><div class="media">';
+            $output += '<img src="<?= base_url('assets/img/products/'); ?>' + data.product_image + '" class="mr-3 img-thumbnail" style="max-width: 80px;">';
+        }
 
     });
 </script>

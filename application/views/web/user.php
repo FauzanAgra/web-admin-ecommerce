@@ -150,10 +150,10 @@
                         <div class="tab-pane fade show" id="pills-transaksi" role="tabpanel" aria-labelledby="pills-activity-tab">
                             <h5>Daftar Transaksi</h5>
                             <div class="list-trans">
-                                <div class="row">
+                                <!-- <div class="row mb-2">
                                     <div class="col-12">
-                                        <div class="card shadow-sm p-2" style="border-radius: 1rem;">
-                                            <div class="row">
+                                        <div class="card shadow-sm p-3" style="border-radius: 1rem;">
+                                            <div class="row mb-4">
                                                 <div class="col-12 d-flex flex-row">
                                                     <small class="font-weight-bold border-right pr-3">
                                                         #DMT20210309000000001
@@ -161,25 +161,40 @@
                                                     <span class="badge badge-success ml-3">Success</span>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row mb-2">
                                                 <div class="col-12">
                                                     <div class="row">
-                                                        <div class="col-12">
+                                                        <div class="col-lg-9 col-sm-8 col-md-8 border-right m-0">
                                                             <div class="media">
-                                                                <img src="<?= base_url('assets/img/products/gamemax-aero-mini-case-1615537926.jpg'); ?>" class="mr-3" width="50px">
-                                                                <div class="media-body">
-                                                                    <h5 class="mt-0">Media heading</h5>
-
+                                                                <img src="<?= base_url('assets/img/products/gamemax-aero-mini-case-1615537926.jpg'); ?>" class="mr-3 img-thumbnail" style="max-width: 80px;">
+                                                                <div class="media-body ">
+                                                                    <h6 class="m-0 d-inline-block font-weight-bold text-truncate" style="max-width: 200px;">GAMEMAX Aero Mini Case</h6>
+                                                                    <br>
+                                                                    <small>1 Barang x Rp. 130.000</small>
+                                                                    <br>
+                                                                    <small>+1 produk lainnya</small>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="col-lg-3 col-sm-4 col-md-4 ">
+                                                            <p class="mb-0 font-weight-normal">Total Berlanja</p>
+                                                            <p class="font-weight-bold">Rp. 800.000</p>
+                                                        </div>
                                                     </div>
-                                                    <div class="row"></div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-end">
+                                                <div class="col-2 text-right">
+                                                    <button class="btn btn-link text-decoration-none text-black">Detail</button>
+                                                </div>
+                                                <div class="col-2">
+                                                    <button class="btn btn-dark">Beli Lagi</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

@@ -12,7 +12,7 @@
                         <h4 class="card-title">Data Kategori</h4>
                     </div>
                     <div class="table-responsive">
-                        <table id="table-categories" class="table table-striped">
+                        <table id="table-categories" class="table table-striped" style="width: 100%;">
                             <thead class="text-center">
                                 <tr>
                                     <th>Nama Kategori</th>

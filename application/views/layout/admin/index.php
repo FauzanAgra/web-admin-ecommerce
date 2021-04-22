@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>DMTekno | <?= $title; ?></title>
+  <title><?= $title; ?> | DMTekno</title>
 
   <link rel="stylesheet" href="<?= base_url(); ?>/assets/vendors/core/core.css">
   <link rel="stylesheet" href="<?= base_url(); ?>/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
@@ -66,6 +66,7 @@
   <script src="https://kit.fontawesome.com/1a0e92cbbe.js" crossorigin="anonymous"></script>
 
   <?php $this->load->view($script); ?>
+
   <script>
     $(document).ready(function() {
 

@@ -72,7 +72,7 @@ class Trans_model extends CI_Model
         $this->db->select('*');
         $this->db->join('products', 'products.product_id = trans_details.detail_product');
         $this->db->where('detail_trans', $id_trans);
-        return $this->db->get('trans_details')->result_array();
+        return $this->db->get('trans_details');
     }
 
     function get_trans_user($id_user)

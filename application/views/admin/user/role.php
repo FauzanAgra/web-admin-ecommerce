@@ -12,7 +12,7 @@
                         <h4 class="card-title">Data Role</h4>
                     </div>
                     <div class="table-responsive">
-                        <table id="table-roles" class="table table-striped">
+                        <table id="table-roles" class="table table-striped" style="width: 100%;">
                             <thead class="text-center">
                                 <tr>
                                     <th>Nama Role</th>

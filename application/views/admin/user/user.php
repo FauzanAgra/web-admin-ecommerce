@@ -13,7 +13,7 @@
                         <button type="button" class="btn btn-primary mb-2 mr-3" data-toggle="modal" data-target="#ModalUser" id="AddUser">Tambah User</button>
                     </div>
                     <div class="table-responsive">
-                        <table id="table-users" class="table table-striped">
+                        <table id="table-users" class="table table-striped" style="width: 100%;">
                             <thead class="text-center">
                                 <tr>
                                     <th>Gambar</th>
