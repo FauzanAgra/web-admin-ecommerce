@@ -19,8 +19,6 @@ class Checkout extends MY_Controller
             $ret->stat = 0;
             $ret->mesg = '';
 
-            date_default_timezone_set("Asia/Jakarta");
-
             $action = $this->input->post('action');
             if ($action == 'load') {
                 $ret->stat = 1;
@@ -64,9 +62,9 @@ class Checkout extends MY_Controller
                     'trans_number' => $kode_trans,
                     'trans_user' => $userdata['user_id'],
                     'trans_total' => $total,
-                    'trans_paid_type' => 0,
-                    'trans_paid_bank' => 0,
-                    'trans_courier' => 0,
+                    'trans_paid_type' => $this->input->post('paid-type'),
+                    'trans_paid_bank' => $this->input->post('paid-bank'),
+                    'trans_courier' => $this->input->post('courier'),
                     'trans_stat' => 1,
                     'trans_date' => date('Y-m-d H:i:s'),
                     'trans_address' => $this->input->post('address')
@@ -116,6 +114,7 @@ class Checkout extends MY_Controller
     {
         $cartSession = $this->cart->contents();
         $userdata = $this->session->userdata('userdata');
+        $bank = $this->db->get('banks')->result_array();
 
         $output = '';
         $total = 0;
@@ -192,6 +191,32 @@ class Checkout extends MY_Controller
                         </div>
                         <hr>
                         <div class="row">
+                            <h5 style="font-size: 1rem; font-weight: 800;">Pembayaran</h5>
+                        </div>
+                        <div class="row">
+                            <select class="custom-select" id="pembayaran">
+                                <option value="0" selected>-- Pembayaran --</option>';
+                foreach ($bank as $b) {
+                    $output .= '<option value="' . $b['bank_id'] . '">Bank ' . $b['bank_name'] . ' - ' . $b['bank_number'] . '</option>';
+                }
+                $output .= ' </select>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <h5 style="font-size: 1rem; font-weight: 800;">Pengiriman</h5>
+                        </div>
+                        <div class="row">
+                            <select class="custom-select" id="pengiriman">
+                                <option value="0" selected>-- Pengiriman --</option>
+                                <option value="1">JNE - Regular</option>
+                                <option value="2">JNE - YES</option>
+                                <option value="3">JNE - OKE</option>
+                                <option value="4">SiCepat - Reguler</option>
+                                <option value="5">SiCepat - Next Day</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="row">
                             <h5 style="font-size: 1rem; font-weight: 800;">Ringkasan belanja</h5>
                         </div>
                         <div class="row d-flex justify-content-between">
@@ -214,7 +239,7 @@ class Checkout extends MY_Controller
                     <img src=" ' . base_url('assets/img/frontend/cart-empty.jpg') . '" width="200px">
                     <h4 class="mt-2">Wah, keranjang belanjamu kosong</h4>
                     <p>Yuk, isi dengan barang-barang impianmu!</p>
-                    <a href="' . base_url('ecommerce/product_main') . '" class="btn btn-dark" >Mulai Belanja</a>
+                    <a href="' . base_url('ecommerce/product') . '" class="btn btn-dark" >Mulai Belanja</a>
                 </div>
                 ';
             }
@@ -224,7 +249,7 @@ class Checkout extends MY_Controller
                     <img src=" ' . base_url('assets/img/frontend/cart-empty.jpg') . '" width="200px">
                     <h4 class="mt-2">Wah, keranjang belanjamu kosong</h4>
                     <p>Yuk, isi dengan barang-barang impianmu!</p>
-                    <a href="' . base_url('ecommerce/product') . '" class="btn btn-dark" >Mulai Belanja</a>
+                    <a href="' . base_url('ecommerce/product') . '" class="btn btn-success" >Mulai Belanja</a>
                 </div>
                 ';
         }

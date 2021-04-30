@@ -49,7 +49,6 @@ class User extends MY_Controller
                 $params = array(
                     'user_full_name' => htmlspecialchars($data['name-full-user']),
                     'user_name' => htmlspecialchars($data['name-user']),
-                    'user_password' => password_hash($data['password-user'], PASSWORD_DEFAULT),
                     'user_phone' => htmlspecialchars($data['phone-user']),
                     'user_address' => htmlspecialchars($data['address-user']),
                     'user_datetime' => date('Y-m-d H:i:s'),
@@ -57,6 +56,9 @@ class User extends MY_Controller
                     'user_image' => $image,
                     'user_stat' => 1
                 );
+                if (isset($data['password-user'])) {
+                    $params['user_password'] = $data['password-user'];
+                }
 
                 $user_id = $data['id-user'];
 
@@ -92,7 +94,7 @@ class User extends MY_Controller
                                         );
                                         if (!empty($data['user_image'])) {
                                             if (file_exists($path . $data['user_image'])) {
-                                                unlink($path . $data['puser_image']);
+                                                unlink($path . $data['user_image']);
                                             }
                                         }
                                         $stat = $this->Users_model->update_user($ids, $params);

@@ -79,6 +79,7 @@ class Trans_model extends CI_Model
     {
         $this->set_join();
         $this->db->where('trans_user', $id_user);
+        $this->db->order_by('trans_date', 'DESC');
         return $this->db->get('transactions')->result_array();
     }
 }

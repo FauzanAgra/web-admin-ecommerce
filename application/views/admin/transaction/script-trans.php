@@ -59,7 +59,7 @@
                     }
                 },
                 {
-                    'data': 'trans_date'
+                    'data': 'date_time'
                 },
                 {
                     'data': 'trans_id',
@@ -105,7 +105,7 @@
                         var stat = data.data.trans_stat;
                         $('#list-produk').html('');
                         $('#trans_number').val(data.data.trans_number);
-                        $('#trans-date').val(data.data.trans_date);
+                        $('#trans-date').val(data.data.date_time + ' WIB');
                         if (stat == 1) {
                             $('#trans-stat').val('Confirm');
                         } else if (stat == 2) {

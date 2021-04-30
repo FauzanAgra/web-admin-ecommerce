@@ -10,6 +10,8 @@ class Login extends CI_Controller
     }
     public function index()
     {
+        $userdata = $this->session->userdata('userdata');
+
         if ($this->input->post() && $this->input->post('action')) {
             $ret = new \stdClass();
             $ret->stat = 0;
@@ -81,9 +83,13 @@ class Login extends CI_Controller
             }
             echo json_encode($ret);
         } else {
-            $data['title'] = 'Login';
-            $data['script'] = 'auth/script-login.php';
-            $this->load->view('auth/login.php', $data);
+            if (!isset($userdata)) {
+                $data['title'] = 'Login';
+                $data['script'] = 'auth/script-login.php';
+                $this->load->view('auth/login.php', $data);
+            } else {
+                redirect(base_url());
+            }
         }
     }
     function logout()
@@ -110,8 +116,6 @@ class Login extends CI_Controller
             $ret->stat = 0;
             $ret->mesg = '';
 
-            date_default_timezone_set("Asia/Jakarta");
-
             $action = $this->input->post('action');
             if ($action == 'regis') {
                 $data = $this->input->post();
@@ -136,9 +140,13 @@ class Login extends CI_Controller
 
             echo json_encode($ret);
         } else {
-            $data['title'] = 'Registrasi';
-            $data['script'] = 'auth/script-registrasi.php';
-            $this->load->view('auth/registrasi.php', $data);
+            if (!isset($userdata)) {
+                $data['title'] = 'Registrasi';
+                $data['script'] = 'auth/script-registrasi.php';
+                $this->load->view('auth/registrasi.php', $data);
+            } else {
+                redirect(base_url());
+            }
         }
     }
 }

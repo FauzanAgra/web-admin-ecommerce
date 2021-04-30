@@ -150,6 +150,64 @@
                         <div class="tab-pane fade show" id="pills-transaksi" role="tabpanel" aria-labelledby="pills-activity-tab">
                             <h5>Daftar Transaksi</h5>
                             <div class="list-trans">
+                                <!-- <div class="table">
+                                    <table id="tableTrans" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <h5>Daftar Transaksi</h5>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="card shadow-sm p-3" style="border-radius: 1rem;">
+                                                        <div class="row mb-4">
+                                                            <div class="col-12 d-flex flex-row">
+                                                                <small class="font-weight-bold border-right pr-3">
+                                                                    #DMT20210309000000001
+                                                                </small>
+                                                                <span class="badge badge-success ml-3">Success</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-12">
+                                                                <div class="row">
+                                                                    <div class="col-lg-9 col-sm-8 col-md-8 border-right m-0">
+                                                                        <div class="media">
+                                                                            <img src="<?= base_url('assets/img/products/gamemax-aero-mini-case-1615537926.jpg'); ?>" class="mr-3 img-thumbnail" style="max-width: 80px;">
+                                                                            <div class="media-body ">
+                                                                                <h6 class="m-0 d-inline-block font-weight-bold text-truncate" style="max-width: 200px;">GAMEMAX Aero Mini Case</h6>
+                                                                                <br>
+                                                                                <small>1 Barang x Rp. 130.000</small>
+                                                                                <br>
+                                                                                <small>+1 produk lainnya</small>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3 col-sm-4 col-md-4 ">
+                                                                        <p class="mb-0 font-weight-normal">Total Berlanja</p>
+                                                                        <p class="font-weight-bold">Rp. 800.000</p>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row justify-content-end">
+                                                            <div class="col-3 text-right">
+                                                                <button class="btn text-decoration-none text-black">Detail</button>
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <button class="btn btn-success">Beli</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div> -->
                                 <!-- <div class="row mb-2">
                                     <div class="col-12">
                                         <div class="card shadow-sm p-3" style="border-radius: 1rem;">
@@ -203,3 +261,31 @@
         </div>
     </div>
 </section>
+
+<!-- ModalUploadBuktiTransaksi -->
+<div class="modal fade" id="modalUpload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Form Upload</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="form-upload">
+                    <div class="form-group">
+                        <label for="">Bukti Transaksi</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnSend">Kirim</button>
+            </div>
+        </div>
+    </div>
+</div>

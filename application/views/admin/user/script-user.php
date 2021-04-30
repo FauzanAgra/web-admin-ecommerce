@@ -111,7 +111,6 @@
             formData.append('id-user', $('#id-user').val());
             formData.append('name-full-user', $('#name-full-user').val());
             formData.append('name-user', $('#name-user').val());
-            formData.append('password-user', $('#password-user').val());
             formData.append('address-user', $('#address-user').val());
             formData.append('phone-user', $('#phone-user').val());
             formData.append('role-user', $('#role-user').val());
@@ -124,10 +123,13 @@
                     var dataImg = result[8];
                     formData.append('image-user', dataImg);
                 }
+                formData.append('action', 'insert');
             } else if ($('#userModalLabel').text() == 'Tambah User') {
+                formData.append('password-user', $('#password-user').val());
                 formData.append('image-user', $('#image-user')[0].files[0]);
+                formData.append('action', 'insert');
             }
-            formData.append('action', 'insert');
+            // formData.append('action', 'insert');
 
             $.ajax({
                 url: url,

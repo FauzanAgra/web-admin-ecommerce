@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?= base_url(); ?>assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url(); ?>/assets/vendors/sweetalert2/sweetalert2.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
     <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/style.css">
 
     <title>DMTekno | <?= $title; ?></title>
@@ -35,6 +36,7 @@
 
 
     <script src="<?= base_url(); ?>assets/bootstrap/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
     <!-- <script src="<?= base_url(); ?>assets/bootstrap/js/popper.min.js"></script> -->
     <script src="<?= base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?= base_url(); ?>/assets/vendors/sweetalert2/sweetalert2.min.js"></script>

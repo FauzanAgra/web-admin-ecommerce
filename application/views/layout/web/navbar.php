@@ -8,7 +8,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a href="<?= base_url('ecommerce'); ?>" class="nav-link text-white">HOME <span class="sr-only">(current)</span></a>
+                        <a href="<?= base_url(); ?>" class="nav-link text-white">HOME <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href=" <?= base_url('ecommerce/product'); ?> ">PRODUK</a>

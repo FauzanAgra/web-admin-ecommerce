@@ -34,6 +34,9 @@ class Transaction extends MY_Controller
 
                 $params = array();
                 $datas = $this->Trans_model->get_all_trans($params, $search, $limit, $start, $order, $dir);
+                for ($x = 0; $x < count($datas); $x++) {
+                    $datas[$x]['date_time'] = date('d M Y - H:i', strtotime($datas[$x]['trans_date']));
+                }
                 $ret->data = $datas;
                 $totaldata = $this->Trans_model->get_count_trans($params, $search);
                 $ret->recordsTotal = $totaldata;
@@ -44,6 +47,7 @@ class Transaction extends MY_Controller
                 $data = $this->Trans_model->get_where_trans($id_trans);
                 $data['trans_detail'] = $this->Trans_model->get_where_detail($id_trans)->result_array();
                 $show = $this->show_trans($data);
+                $data['date_time'] = date('d M Y, H:i', strtotime($data['trans_date']));
                 if ($show) {
                     $ret->stat = 1;
                     $ret->data = $data;

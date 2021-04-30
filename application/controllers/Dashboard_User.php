@@ -11,6 +11,7 @@ class Dashboard_User extends MY_Controller
     }
     public function index()
     {
+
         if ($this->input->post() && $this->input->post('action')) {
             $ret = new \stdClass();
             $ret->stat = 0;
@@ -123,8 +124,63 @@ class Dashboard_User extends MY_Controller
                     $ret->mesg = 'Data Berhasil di Load';
                     $ret->data = $show_data;
                 }
-            }
+            } else if ($action == 'upload') {
+                // $image_trans = $this->input->post('upload');
+                // $params = array(
+                //     'trans_stat' => $this->input->post('status')
+                // );
+                $where = array(
+                    'trans_id' => $this->input->post('id_trans'),
+                    'trans_number' => $this->input->post('trans_number')
+                );
 
+                $data = $this->db->get_where('transactions', $where)->row_array();
+
+                if ($data) {
+                    $path = FCPATH . 'assets/img/invoice/';
+                    $config['image_library'] = 'gd2';
+                    $config['upload_path'] = $path;
+                    $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->input->post('upload') != 'undefined') {
+                        if ($this->upload->do_upload('upload')) {
+                            $upload = $this->upload->data();
+                            $raw_photo = $upload['raw_name'] . "-" . time() . $upload['file_ext'];
+                            $old_name = $upload['full_path'];
+                            $new_name = $path . $raw_photo;
+                            if (rename($old_name, $new_name)) {
+                                if ($data && $data['trans_id']) {
+                                    $params = array(
+                                        'trans_stat' => $this->input->post('trans_stat'),
+                                        'trans_invoice' => $raw_photo
+                                    );
+
+                                    if (!empty($data['trans_invoice'])) {
+                                        if (file_exists($path . $data['trans_invoice'])) {
+                                            unlink($path . $data['trans_invoice']);
+                                        }
+                                    }
+                                    $stat = $this->db->update('transactions', $params, array('trans_id' => $data['trans_id']));
+                                    if ($stat) {
+                                        $ret->stat = 1;
+                                        $ret->mesg = "Upload Berhasil, mohon menunggu konfirmasi admin!";
+                                    }
+                                }
+                            }
+                        } else {
+                            $ret->stat = 1;
+                            $ret->mesg = 'Upload Gambar Gagal';
+                        }
+                    } else {
+                        $ret->stat = 1;
+                        $ret->mesg = 'Gambar Tidak Ada';
+                    }
+                } else {
+                    $ret->stat = 1;
+                    $ret->mesg = 'Data Tidak Ditemukan';
+                }
+            }
             echo json_encode($ret);
         } else {
             $data['profile'] = $this->session->userdata('userdata');
@@ -149,9 +205,23 @@ class Dashboard_User extends MY_Controller
                                         <div class="col-12 d-flex flex-row">
                                             <small class="font-weight-bold border-right pr-3">
                                                 #' . $data['trans_number'] . '
-                                            </small>
-                                            <span class="badge badge-success ml-3">Success</span>
-                                        </div>
+                                            </small>';
+
+                if ($data['trans_stat'] == 1) {
+                    $output .= '<span class="badge badge-warning ml-3">Upload Bukti Transaksi</span>';
+                } else if ($data['trans_stat'] == 2) {
+                    $output .= '<span class="badge badge-warning ml-3">Menunggu Konfirmasi</span>';
+                } else if ($data['trans_stat'] == 3) {
+                    $output .= '<span class="badge badge-warning ml-3">Proses</span>';
+                } else if ($data['trans_stat'] == 4) {
+                    $output .= '<span class="badge badge-warning ml-3">Pengiriman</span>';
+                } else if ($data['trans_stat'] == 5) {
+                    $output .= '<span class="badge badge-success ml-3">Diterima</span>';
+                } else if ($data['trans_stat'] == 6) {
+                    $output .= '<span class="badge badge-danger ml-3">Dibatalkan</span>';
+                }
+
+                $output .= '</div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-12">
@@ -200,16 +270,36 @@ class Dashboard_User extends MY_Controller
                     ';
                 }
 
+
                 $output .= '
                                 </div>
                             </div>
                             <div class="row justify-content-end">
-                                <div class="col-2 text-right">
-                                    <button class="btn btn-link text-decoration-none text-black">Detail</button>
+                                <div class="col-lg-4 text-right">
+                                    <button class="btn btn-sm w-100 font-weight-bold" id="btnUpload" data-id="' . $data['trans_id'] . '" data-trans="' . $data['trans_number'] . '">Lihat Detail Transaksi</button>
                                 </div>
-                                <div class="col-2">
-                                    <button class="btn btn-dark">Beli Lagi</button>
-                                </div>
+                ';
+                if ($data['trans_stat'] == 1) {
+                    $output .= '                
+                                    <div class="col-lg-3 text-right">
+                                        <button class="btn btn-sm w-100 btn-warning font-weight-bold" id="btnUpload" data-id="' . $data['trans_id'] . '" data-trans="' . $data['trans_number'] . '">Upload Bukti</button>
+                                    </div>
+                    ';
+                } else if ($data['trans_stat'] == 3) {
+                    $output .= '
+                                    <div class="col-lg-3 text-right">
+                                        <button class="btn btn-sm w-100 btn-warning font-weight-bold" id="btnFind" data-id="' . $data['trans_id'] . '" data-trans="' . $data['trans_number'] . '">Lacak Pengiriman</button>
+                                    </div>
+                    ';
+                } else if ($data['trans_stat'] == 4) {
+                    $output .= '
+                                    <div class="col-lg-3 text-right">
+                                        <button class="btn btn-sm w-100 btn-warning font-weight-bold" id="btnAccept" data-id="' . $data['trans_id'] . '" data-trans="' . $data['trans_number'] . '">Pesanan Diterima</button>
+                                    </div>
+                    ';
+                }
+
+                $output .= '
                             </div>
                         </div>
                     </div>
@@ -218,7 +308,12 @@ class Dashboard_User extends MY_Controller
             }
         } else {
             $output .= '
-                Tranasksi Belom Ada
+            <div class="col-12 text-center">
+                <img src=" ' . base_url('assets/img/frontend/trans-empty.png') . '" width="200px">
+                <h4 class="mt-2">Oops, nggak ada transaksi</h4>
+                <p>Yuk, isi dengan barang-barang impianmu!</p>
+                <a href="' . base_url('ecommerce/product') . '" class="btn btn-success" >Mulai Belanja</a>
+            </div>
             ';
         }
 

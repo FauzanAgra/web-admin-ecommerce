@@ -6,16 +6,7 @@ class Checkout_model extends CI_Model
 {
     function generateTrx()
     {
-        date_default_timezone_set("Asia/Jakarta");
-        $maxIdTrax = $this->db->query("SELECT MAX(`trans_id`) as maxId FROM transactions")->row_array();
-        $data = $maxIdTrax['maxId'];
-        if ($data == null) {
-            $data = 0;
-            $data++;
-        } else {
-            $data++;
-        }
-        $kodeBarang = "DMT" . date("Ymd") . sprintf("%08s", $data);
+        $kodeBarang = "DMT" . date("Ymd") . mt_rand(0, 99999999);
         return $kodeBarang;
     }
 

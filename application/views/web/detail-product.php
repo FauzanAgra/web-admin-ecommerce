@@ -2,6 +2,10 @@
     <div class="container bg-white mt-5 mb-5">
         <div class="card p-3 shadow">
             <div class="row">
+                <input type="text" id="detail-id" value="<?= $detail['product_id']; ?>" hidden>
+                <input type="text" id="detail-name" value="<?= $detail['product_name']; ?>" hidden>
+                <input type="text" id="detail-price" value="<?= $detail['product_price']; ?>" hidden>
+                <input type="text" id="detail-image" value="<?= $detail['product_image']; ?>" hidden>
                 <div class="col-lg-5 col-md-12 text-center mb-md-4">
                     <div class=" fotoproduk1">
                         <img src="<?= base_url('assets/img/products/') . $detail['product_image'] ?>" style="max-width: 400px;">
@@ -35,16 +39,13 @@
                                 <p class="font-weight-bold pt-1">Kuantitas</p>
                             </div>
                             <div class="col-lg-3 col-md-3">
-                                <input type="number" class="form-control" id="qty-product">
+                                <input type="number" class="form-control" id="qty-product" max="9">
                             </div>
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-lg-12">
-                            <button class="btn btn-light p-2 border border-danger">
-                                Beli Sekarang
-                            </button>
-                            <button class="btn btn-danger p-2">
+                            <button class="btn btn-danger p-2 btnSubmit">
                                 <i class="fas fa-shopping-bag mr-1"></i>
                                 Add to Cart
                             </button>
