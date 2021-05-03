@@ -125,10 +125,6 @@ class Dashboard_User extends MY_Controller
                     $ret->data = $show_data;
                 }
             } else if ($action == 'upload') {
-                // $image_trans = $this->input->post('upload');
-                // $params = array(
-                //     'trans_stat' => $this->input->post('status')
-                // );
                 $where = array(
                     'trans_id' => $this->input->post('id_trans'),
                     'trans_number' => $this->input->post('trans_number')

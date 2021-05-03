@@ -18,7 +18,8 @@ class Transaction extends MY_Controller
             $action = $this->input->post('action');
             if ($action == 'load') {
                 $columns = array(
-                    '0' => 'trans_number'
+                    '3' => 'trans_stat',
+                    '4' => 'trans_date'
                 );
                 $limit = $this->input->post('length');
                 $start = $this->input->post('start');

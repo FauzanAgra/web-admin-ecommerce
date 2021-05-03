@@ -78,8 +78,8 @@
 </div>
 
 <!-- Modal Confirmasion -->
-<!-- <div class="modal fade" id="ModalConfirmasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered" role="document">
+<div class="modal fade" id="modalKonfirmasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable " role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="userModalLabel">Konfirmasi Transaksi</h5>
@@ -88,14 +88,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" id="form-trans">
-
-                </form>
-                <hr>
-                <div class="row" id="list-produk">
-
+                <div class="row">
+                    <div class="col-12">
+                        <img src="<?= base_url('assets/img/invoice/contoh-bukti-1619765020.jpg'); ?>" class="img-thumbnail">
+                    </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" id="btnKonfirmasi">Tolak</button>
+                <button class="btn btn-primary" id="btnKonfirmasi">Konfirmasi</button>
             </div>
         </div>
     </div>
-</div> -->
+</div>

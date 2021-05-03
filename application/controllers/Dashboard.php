@@ -12,7 +12,7 @@ class Dashboard extends MY_Controller
         $data['profile'] = $this->session->userdata('userdata');
         $data['database'] = array(
             'products' => $this->db->count_all_results('products'),
-            'users' => $this->db->count_all_results('users'),
+            'users' => $this->db->get_where('users', array('user_role' => 2))->num_rows(),
             'trans' => $this->db->count_all_results('transactions')
         );
         $data['title'] = 'Dashboard';

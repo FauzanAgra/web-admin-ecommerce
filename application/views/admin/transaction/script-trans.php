@@ -30,7 +30,8 @@
                 'targets': []
             }],
             "order": [
-                [0, 'desc']
+                [3, 'asc'],
+                [4, 'desc'],
             ],
             "columns": [{
                     'data': 'trans_number'
@@ -48,13 +49,17 @@
                     'data': 'trans_stat',
                     render: function(data, meta, row) {
                         if (data == 1) {
-                            return '<span class="badge badge-pill badge-primary">confirm</span>';
+                            return '<span class="badge badge-pill badge-warning">Proses Upload</span>';
                         } else if (data == 2) {
-                            return '<span class="badge badge-pill badge-warning">packaging</span>';
+                            return '<span class="badge badge-pill badge-warning">Konfirmasi</span>';
                         } else if (data == 3) {
-                            return '<span class="badge badge-pill badge-info">delivery</span>';
+                            return '<span class="badge badge-pill badge-warning">Proses</span>';
                         } else if (data == 4) {
-                            return '<span class="badge badge-pill badge-success">received</span>';
+                            return '<span class="badge badge-pill badge-warning">Pengiriman</span>';
+                        } else if (data == 5) {
+                            return '<span class="badge badge-pill badge-success">Diterima</span>';
+                        } else if (data == 6) {
+                            return '<span class="badge badge-pill badge-danger">Dibatalkan</span>';
                         }
                     }
                 },
@@ -65,14 +70,19 @@
                     'data': 'trans_id',
                     render: function(data, meta, row) {
                         var disp = '';
-                        if (parseInt(row.trans_stat) === 1) {
-                            disp += '<button type="button" class="btn btn-primary btn-icon text-white confirm mr-1" data-id=' + data + ' title="confirm"><i class="fas fa-file"></i></button>';
-                        } else if (parseInt(row.trans_stat) === 2) {
-                            disp += '<button type="button" class="btn btn-primary btn-icon text-white delivery mr-1" data-id=' + data + ' title="packed"><i class="fas fa-dolly"></i></button>';
+                        var stat = parseInt(row.trans_stat);
+
+                        if (parseInt(row.trans_stat) === 2) {
+                            disp += '<button type="button" class="btn btn-warning btn-icon text-white confirm mr-1" data-id=' + data + ' title="Konfirmasi "><i class="fas fa-file"></i></button>';
                         } else if (parseInt(row.trans_stat) === 3) {
-                            disp += '<button type="button" class="btn btn-primary btn-icon cek-resi text-white  mr-1" data-id=' + data + ' title="deliver"><i class="fas fa-truck"></i></button>';
+                            disp += '<button type="button" class="btn btn-warning btn-icon text-white delivery mr-1" data-id=' + data + ' title="Pengiriman"><i class="fas fa-dolly"></i></button>';
+                        } else if (parseInt(row.trans_stat) === 4) {
+                            disp += '<button type="button" class="btn btn-warning btn-icon cek-resi text-white  mr-1" data-id=' + data + ' title="deliver"><i class="fas fa-truck"></i></button>';
                         }
-                        disp += '<button type="button" class="btn btn-danger btn-icon btnDetail mr-1" data-id=' + data + '><i class="fas fa-search-plus"></i></button>';
+                        disp += '<button type="button" class="btn btn-primary btn-icon btnDetail mr-1" data-id=' + data + ' title="Detail"><i class="fas fa-search-plus"></i></button>';
+                        if (stat === 1 || stat === 2 || stat === 3) {
+                            disp += '<button type="button" class="btn btn-danger btn-icon text-white confirm mr-1" data-id=' + data + ' title="Batalkan"><i class="fas fa-times"></i></button>';
+                        }
                         return disp;
                     }
                 }
@@ -106,7 +116,7 @@
                         $('#list-produk').html('');
                         $('#trans_number').val(data.data.trans_number);
                         $('#trans-date').val(data.data.date_time + ' WIB');
-                        if (stat == 1) {
+                        if (stat == 2) {
                             $('#trans-stat').val('Confirm');
                         } else if (stat == 2) {
                             $('#trans-stat').val('Packaging');
@@ -123,6 +133,10 @@
                 }
             });
         });
+
+        $(document).on('click', '.confirm', function() {
+            $('#modalKonfirmasi').modal('show');
+        })
 
         function formatRupiah(input) {
             var reverse = input.toString().split('').reverse().join('');
