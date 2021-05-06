@@ -48,7 +48,7 @@
                 <form action="" id="form-trans">
                     <input type="text" id="id-trans" hidden>
                     <div class="row">
-                        <div class="col-lg-5 col-md-12">
+                        <div class="col-lg-4 col-md-12">
                             <div class="form-group">
                                 <label for="trans_number">Kode Transaksi</label>
                                 <input type="text" class="form-control" id="trans_number" disabled>
@@ -60,7 +60,7 @@
                                 <input type="datetime" class="form-control" id="trans-date" disabled>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label for="date">Status</label>
                                 <input type="text" class="form-control" id="trans-stat" disabled>
@@ -88,15 +88,44 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">
-                        <img src="<?= base_url('assets/img/invoice/contoh-bukti-1619765020.jpg'); ?>" class="img-thumbnail">
+                <form id="form-confirm-upload">
+                    <input type="text" id="trans-id" hidden>
+                    <div class="row">
+                        <div class="col-12">
+                            <img src="" alt="Kosong" class="img-thumbnail viewBukti">
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-danger" id="btnKonfirmasi">Tolak</button>
-                <button class="btn btn-primary" id="btnKonfirmasi">Konfirmasi</button>
+                <button class="btn btn-success" id="btnProses">Proses</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Input Resi -->
+
+<div class="modal fade" id="ModalInputResi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="resiModalLabel">Input Resi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="form-resi">
+                    <input type="text" id="trans-resi-id" hidden>
+                    <div class="form-group">
+                        <label for="resi">Resi</label>
+                        <input type="text" class="form-control" name="resi" id="trans-resi">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnResi">Submit</button>
             </div>
         </div>
     </div>

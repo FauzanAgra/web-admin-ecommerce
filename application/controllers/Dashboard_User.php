@@ -272,7 +272,7 @@ class Dashboard_User extends MY_Controller
                             </div>
                             <div class="row justify-content-end">
                                 <div class="col-lg-4 text-right">
-                                    <button class="btn btn-sm w-100 font-weight-bold" id="btnUpload" data-id="' . $data['trans_id'] . '" data-trans="' . $data['trans_number'] . '">Lihat Detail Transaksi</button>
+                                    <button class="btn btn-sm w-100 font-weight-bold" id="btnDetail" data-id="' . $data['trans_id'] . '" data-trans="' . $data['trans_number'] . '">Lihat Detail Transaksi</button>
                                 </div>
                 ';
                 if ($data['trans_stat'] == 1) {

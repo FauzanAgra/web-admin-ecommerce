@@ -54,6 +54,58 @@ class Transaction extends MY_Controller
                     $ret->data = $data;
                     $ret->show = $show;
                 }
+            } else if ($action == 'getImage') {
+                $id = $this->input->post('trans-id');
+
+                $image = $this->db->get_where('transactions', array('trans_id' => $id))->row_array();
+                $data = array(
+                    'trans_id' => $image['trans_id'],
+                    'trans_invoice' => $image['trans_invoice']
+                );
+
+                if ($data) {
+                    $ret->stat = 1;
+                    $ret->data = $data;
+                    $ret->mesg = 'Data Berhasil';
+                }
+            } else if ($action ==  'cancel-trans') {
+                $trans_id = $this->input->post('trans-id');
+                $params = array(
+                    'trans_stat' => 6,
+                );
+                $stat = $this->db->update('transactions', $params, array('trans_id' => $trans_id));
+
+                if ($stat) {
+                    $ret->stat = 1;
+                    $ret->mesg = 'Transaksi berhasil dibatalkan';
+                }
+            } else if ($action == 'proses-trans') {
+                $where = array(
+                    'trans_id' => $this->input->post('trans-id')
+                );
+                $params = array(
+                    'trans_stat' => 3
+                );
+                $stat = $this->db->update('transactions', $params, $where);
+                if ($stat) {
+                    $ret->stat = 1;
+                    $ret->mesg = 'Transaksi berhasil di Proses';
+                }
+            } else if ($action == 'input-resi') {
+                $where = array(
+                    'trans_id' => $this->input->post('trans-id')
+                );
+
+                $params = array(
+                    'trans_stat' => $this->input->post('trans-stat'),
+                    'trans_resi' => $this->input->post('trans-resi')
+                );
+
+                $stat = $this->db->update('transactions', $params, $where);
+                if ($stat) {
+                    $ret->stat = 1;
+                    $ret->mesg = 'Data Resi berhasil di inputkan';
+                }
             }
 
             echo json_encode($ret);
